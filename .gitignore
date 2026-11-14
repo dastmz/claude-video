@@ -1,0 +1,3 @@
+output/*.wav
+output/still_*.png
+__pycache__/
