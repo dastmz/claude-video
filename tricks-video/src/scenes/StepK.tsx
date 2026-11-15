@@ -40,6 +40,8 @@ export const StepK: React.FC = () => {
       {/* messy */}
       <Pop at={LEFT_AT} style={{ position: "absolute", left: safe.left, top, width: CARD_W, height: CARD_H }}>
         <Sfx name="pop" at={LEFT_AT} />
+        <Sfx name="scribble" at={SCRIBBLE_AT} volume={0.7} />
+        <Sfx name="scribble" at={SCRIBBLE_AT + 14} volume={0.6} />
         <div style={{ width: "100%", height: "100%", borderRadius: radius, background: "#F1F5F9", boxShadow: shadow, transform: `rotate(${-5 + jitter("r") * 0.5}deg) translate(${jitter("a")}px, ${jitter("b")}px)`, position: "relative", overflow: "hidden", border: `4px solid ${colors.pen}` }}>
           <svg width={CARD_W} height={CARD_H} viewBox={`0 0 ${CARD_W} ${CARD_H}`}>
             {[80, 150, 205, 290, 340, 420, 470].map((y, i) => {

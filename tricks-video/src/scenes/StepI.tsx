@@ -3,7 +3,7 @@ import { stepI } from "../content";
 import { accent, colors, fonts, radius, shadow, size } from "../theme";
 import { SceneShell } from "../components/SceneShell";
 import { HEADER_BOTTOM, SLAM_AT, StepHeader } from "../components/StepHeader";
-import { typeEnd, TypeLines, WordReveal } from "../components/RichText";
+import { stripMarkup, typeEnd, TypeLines, WordReveal } from "../components/RichText";
 import { Pop, SafeBox } from "../components/UI";
 import { Sfx } from "../components/Sfx";
 
@@ -23,6 +23,16 @@ export const StepI: React.FC = () => {
       <SafeBox top={HEADER_BOTTOM}>
         <Pop at={SHEET_AT} style={{ width: "100%" }}>
           <Sfx name="pop" at={SHEET_AT} />
+          {(() => {
+            const out: React.ReactNode[] = [];
+            let t = WRITE_AT;
+            stepI.lines.forEach((l, li) => {
+              const dur = stripMarkup(l).length / CPS;
+              for (let k = 0; k < dur; k += 16) out.push(<Sfx key={`${li}-${k}`} name="scribble" at={t + k} volume={0.6} />);
+              t += dur + PAUSE;
+            });
+            return out;
+          })()}
           <div
             style={{
               position: "relative",

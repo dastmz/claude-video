@@ -27,6 +27,8 @@ export const Hook: React.FC = () => {
     <SceneShell tint={colors.pen} slams={[SLAM, STAMP + 3]}>
       <Sfx name="slam" at={SLAM} volume={0.8} />
       <Sfx name="slam" at={STAMP + 2} volume={0.8} />
+      {hook.typed.split("").map((ch, i) => (ch.trim() ? <Sfx key={i} name="type" at={TYPE_AT + i / 0.7} volume={0.7} /> : null))}
+      <Sfx name="scribble" at={STAMP + 8} volume={0.8} />
       <SafeBox top={safe.top + 30}>
         <div
           style={{

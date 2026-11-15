@@ -25,6 +25,8 @@ export const StepT: React.FC = () => {
       <SafeBox top={HEADER_BOTTOM + 10}>
         <Pop at={CARD_AT} style={{ width: "100%" }}>
           <Sfx name="pop" at={CARD_AT} />
+          <Sfx name="scribble" at={Q_AT + 25} volume={0.8} />
+          <Sfx name="scribble" at={MARKS_AT + 8} volume={0.45} />
           <Card accentColor={c}>
             <WordReveal text={stepT.question} start={Q_AT} stagger={3} style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: 60, lineHeight: 1.35, color: colors.text }} />
             <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22 }}>

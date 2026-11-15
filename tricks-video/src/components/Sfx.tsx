@@ -13,7 +13,7 @@ const available = () => {
 const files = available();
 export const hasStatic = (path: string) => files.has(path);
 
-export type SfxName = "whoosh" | "pop" | "slam" | "ding";
+export type SfxName = "whoosh" | "pop" | "slam" | "ding" | "type" | "scribble";
 
 export const Sfx: React.FC<{ name: SfxName; at: number; volume?: number }> = ({ name, at, volume = 0.5 }) => {
   const path = `sfx/${name}.mp3`;

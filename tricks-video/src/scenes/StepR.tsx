@@ -36,6 +36,7 @@ export const StepR: React.FC = () => {
             <Pop key={i} at={at} style={{ width: "100%" }}>
               <Sfx name="pop" at={at} />
               <Sfx name="pop" at={at + 30} volume={0.4} />
+              <Sfx name="scribble" at={at + 8} volume={0.8} />
               <Card accentColor={c} style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "26px 30px 30px" }}>
                 <PenCircle at={at + 8} seed={`r${i}`}>
                   <span style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: colors.text, whiteSpace: "nowrap" }}>{row.marks}</span>

@@ -81,6 +81,7 @@ export const Outro: React.FC = () => {
             <Confetti at={BURST_AT + 2} />
           </span>
           <Sfx name="slam" at={BURST_AT} volume={0.7} />
+          <Sfx name="ding" at={BURST_AT + 3} volume={0.6} />
         </div>
       </SafeBox>
 
