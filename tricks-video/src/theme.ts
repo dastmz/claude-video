@@ -33,16 +33,20 @@ export const fonts = {
 };
 
 export const colors = {
-  bg: "#0F1B3D",
-  bgDeep: "#0A1330",
+  // light, warm paper background (matches the bengkel slides)
+  bg: "#FBF8F1",
+  bgDeep: "#F2ECDF",
+  text: "#0F1B3D", // main ink (deep navy)
+  textSoft: "#475569", // secondary text
+  onAccent: "#FFFFFF", // text/icons sitting on a coloured fill
   white: "#FFFFFF",
-  secondary: "#CBD5E1",
+  surface: "#FFFFFF", // cards
+  surfaceBorder: "rgba(15,27,61,0.10)",
+  grid: "rgba(15,27,61,0.055)",
   highlight: "#FACC15",
   pen: "#EF4444",
   good: "#22C55E",
-  card: "rgba(255,255,255,0.07)",
-  cardBorder: "rgba(255,255,255,0.14)",
-  paper: "#F8FAFC",
+  paper: "#FFFFFF",
   ink: "#1E293B",
 };
 
@@ -82,7 +86,9 @@ export const size = {
 };
 
 export const radius = 32;
-export const shadow = "0 24px 60px rgba(0,0,0,0.35), 0 4px 14px rgba(0,0,0,0.25)";
+export const shadow = "0 18px 44px rgba(15,27,61,0.13), 0 3px 10px rgba(15,27,61,0.07)";
+/** Solid drop under giant letters. */
+export const letterDrop = "0 14px 0 rgba(15,27,61,0.14)";
 
 export const motion = {
   word: { damping: 14, stiffness: 190, mass: 0.7 },

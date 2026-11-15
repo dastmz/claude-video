@@ -1,6 +1,6 @@
 # TRICKS — TikTok video (Remotion)
 
-Kinetic-typography explainer, 1080×1920, 30fps, 75s (2250 frames). Composition id: `TricksVideo`.
+Kinetic-typography explainer for HALUS candidates (TRICKS untuk LULUS Kertas 1), light theme, 1080×1920, 30fps, 75s (2250 frames). Composition id: `TricksVideo`.
 
 - Wording: `src/content.ts` (markup: `[kuning]`, `{garis merah}`, `|bulatan merah|`, `~` = non-breaking space)
 - Colours, fonts, safe zone: `src/theme.ts`

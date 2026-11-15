@@ -48,7 +48,7 @@ export const StepI: React.FC = () => {
         <Pop at={tipAt} style={{ width: "100%" }}>
           <Sfx name="ding" at={tipAt} />
           <div style={{ background: `linear-gradient(90deg, ${c}, #15803D)`, borderRadius: 999, padding: "24px 44px", boxShadow: `0 20px 50px ${c}55` }}>
-            <WordReveal text={stepI.tip} start={tipAt + 4} stagger={3} align="center" style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.2, color: colors.white }} />
+            <WordReveal text={stepI.tip} start={tipAt + 4} stagger={3} align="center" style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.2, color: colors.onAccent }} />
           </div>
         </Pop>
       </SafeBox>

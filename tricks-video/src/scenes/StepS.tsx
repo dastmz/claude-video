@@ -2,7 +2,7 @@ import React from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { Check } from "lucide-react";
 import { stepS } from "../content";
-import { accent, colors, fonts, motion, radius, safe, size } from "../theme";
+import { accent, colors, fonts, motion, radius, safe, shadow, size } from "../theme";
 import { SceneShell } from "../components/SceneShell";
 import { HEADER_BOTTOM, SLAM_AT, StepHeader } from "../components/StepHeader";
 import { DrawIcon } from "../components/UI";
@@ -36,9 +36,9 @@ export const StepS: React.FC = () => {
                 gap: 28,
                 padding: "30px 34px",
                 borderRadius: radius,
-                background: last ? `linear-gradient(90deg, ${c}44, ${c}18)` : "rgba(255,255,255,0.07)",
-                border: `2px solid ${last ? c : "rgba(255,255,255,0.14)"}`,
-                boxShadow: last ? `0 0 ${40 + breathe * 40}px ${c}66` : "0 20px 50px rgba(0,0,0,0.3)",
+                background: last ? `linear-gradient(90deg, ${c}30, ${colors.surface})` : colors.surface,
+                border: `3px solid ${last ? c : colors.surfaceBorder}`,
+                boxShadow: last ? `0 0 ${30 + breathe * 40}px ${c}55` : shadow,
                 opacity: s,
                 transform: `translateY(${(1 - s) * 50}px)`,
                 filter: `blur(${(1 - s) * 8}px)`,
@@ -46,9 +46,9 @@ export const StepS: React.FC = () => {
             >
               <Sfx name="ding" at={at + 18} volume={0.35} />
               <div style={{ width: 92, height: 92, borderRadius: 26, flexShrink: 0, border: `4px solid ${c}`, background: tick > 0.05 ? c : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${0.85 + 0.15 * tick})`, boxShadow: tick > 0.5 ? `0 0 30px ${c}` : undefined }}>
-                <DrawIcon Icon={Check} at={at + 18} dur={22} color={colors.white} size={66} strokeWidth={3.4} />
+                <DrawIcon Icon={Check} at={at + 18} dur={22} color={colors.onAccent} size={66} strokeWidth={3.4} />
               </div>
-              <div style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body + 4, lineHeight: 1.15, color: colors.white }}>{plain(t)}</div>
+              <div style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body + 4, lineHeight: 1.15, color: colors.text }}>{plain(t)}</div>
             </div>
           );
         })}

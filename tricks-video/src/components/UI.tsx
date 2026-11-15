@@ -28,8 +28,8 @@ export const Card: React.FC<{ style?: React.CSSProperties; accentColor?: string;
     style={{
       width: "100%",
       borderRadius: radius,
-      background: "linear-gradient(180deg, #1B2B5C 0%, #15224B 100%)",
-      border: `2px solid ${accentColor ? accentColor + "66" : colors.cardBorder}`,
+      background: colors.surface,
+      border: `3px solid ${accentColor ? accentColor + "55" : colors.surfaceBorder}`,
       boxShadow: shadow,
       padding: 40,
       boxSizing: "border-box",
@@ -40,7 +40,7 @@ export const Card: React.FC<{ style?: React.CSSProperties; accentColor?: string;
   </div>
 );
 
-export const Pill: React.FC<{ color: string; children: React.ReactNode; style?: React.CSSProperties; textColor?: string }> = ({ color, children, style, textColor = colors.white }) => (
+export const Pill: React.FC<{ color: string; children: React.ReactNode; style?: React.CSSProperties; textColor?: string }> = ({ color, children, style, textColor = colors.onAccent }) => (
   <div
     style={{
       display: "inline-flex",

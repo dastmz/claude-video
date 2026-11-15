@@ -1,7 +1,7 @@
 import React from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { title } from "../content";
-import { accent, colors, fonts, Letter, safe } from "../theme";
+import { accent, colors, fonts, Letter, letterDrop, safe, shadow } from "../theme";
 import { SceneShell } from "../components/SceneShell";
 import { WordReveal } from "../components/RichText";
 import { SafeBox } from "../components/UI";
@@ -24,7 +24,7 @@ export const Title: React.FC = () => {
           text={title.small}
           start={SMALL_AT}
           align="center"
-          style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: 64, letterSpacing: "0.14em", color: colors.secondary }}
+          style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: 64, letterSpacing: "0.14em", color: colors.textSoft }}
         />
         <div style={{ marginTop: 10 }}>
           {rows.map((row, r) => (
@@ -47,7 +47,7 @@ export const Title: React.FC = () => {
                       color: col,
                       opacity: frame >= at ? 1 : 0,
                       transform: `translateY(${wave}px) scale(${s}) rotate(${(1 - s) * (i % 2 ? 14 : -14)}deg)`,
-                      textShadow: `0 16px 0 rgba(0,0,0,0.3), 0 0 60px ${col}88`,
+                      textShadow: `${letterDrop}, 0 0 50px ${col}55`,
                     }}
                   >
                     {ch}
@@ -62,8 +62,9 @@ export const Title: React.FC = () => {
       <SafeBox top={1120}>
         <div
           style={{
-            background: "rgba(255,255,255,0.07)",
-            border: "2px solid rgba(255,255,255,0.14)",
+            background: colors.surface,
+            boxShadow: shadow,
+            border: `3px solid ${colors.surfaceBorder}`,
             borderRadius: 32,
             padding: "28px 40px",
             width: "100%",
@@ -76,7 +77,7 @@ export const Title: React.FC = () => {
             start={SUB_AT}
             stagger={3}
             align="center"
-            style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: 60, lineHeight: 1.22, color: colors.white }}
+            style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: 60, lineHeight: 1.22, color: colors.text }}
           />
         </div>
       </SafeBox>

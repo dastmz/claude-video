@@ -1,7 +1,7 @@
 import React from "react";
 import { random, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { outro } from "../content";
-import { accent, colors, fonts, Letter, radius, safe, size } from "../theme";
+import { accent, colors, fonts, Letter, letterDrop, radius, safe, size } from "../theme";
 import { slamScale } from "../components/anim";
 import { SceneShell } from "../components/SceneShell";
 import { WordReveal } from "../components/RichText";
@@ -55,11 +55,11 @@ export const Outro: React.FC = () => {
           return (
             <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, transform: `translateY(${wave}px)` }}>
               <Sfx name="pop" at={at} volume={0.3} />
-              <div style={{ width: 160, height: 160, borderRadius: radius, background: col, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: fonts.headline, fontWeight: 900, fontSize: 124, lineHeight: 1, color: colors.white, transform: `scale(${s})`, opacity: frame >= at ? 1 : 0, boxShadow: `0 14px 40px ${col}77` }}>
+              <div style={{ width: 160, height: 160, borderRadius: radius, background: col, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: fonts.headline, fontWeight: 900, fontSize: 124, lineHeight: 1, color: colors.onAccent, transform: `scale(${s})`, opacity: frame >= at ? 1 : 0, boxShadow: `0 14px 40px ${col}77` }}>
                 <span style={{ transform: "translateY(0.05em)" }}>{r.letter}</span>
               </div>
               <Pop at={at + 8}>
-                <span style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: colors.white }}>{r.label}</span>
+                <span style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: colors.text }}>{r.label}</span>
               </Pop>
             </div>
           );
@@ -67,16 +67,17 @@ export const Outro: React.FC = () => {
       </div>
 
       <SafeBox top={800}>
-        <div style={{ textAlign: "center", fontFamily: fonts.headline, fontWeight: 900, fontSize: 80, lineHeight: 1.12, color: colors.white }}>
+        <div style={{ textAlign: "center", fontFamily: fonts.headline, fontWeight: 900, fontSize: 80, lineHeight: 1.12, color: colors.text }}>
           <WordReveal
             text={outro.quoteBefore}
             start={QUOTE_AT}
             align="center"
             style={{ display: "inline" }}
-            wordStyle={(i) => (i === 1 ? { color: colors.highlight } : {})}
+            wordStyle={(i) => (i === 1 ? { color: accent.C } : {})}
           />
-          <span style={{ position: "relative", display: "inline-block", marginLeft: "0.25em", transform: `scale(${burst.scale})`, opacity: burst.opacity }}>
-            <span style={{ color: colors.highlight, fontSize: 140, lineHeight: 0.9, textShadow: `0 0 50px ${colors.highlight}` }}>{outro.quoteBurst}</span>
+          <div style={{ marginTop: 6 }} />
+          <span style={{ position: "relative", display: "inline-block", transform: `scale(${burst.scale})`, opacity: burst.opacity }}>
+            <span style={{ color: accent.T, fontSize: 150, lineHeight: 0.9, textShadow: `${letterDrop}, 0 0 40px ${colors.highlight}` }}>{outro.quoteBurst}</span>
             <Confetti at={BURST_AT + 2} />
           </span>
           <Sfx name="slam" at={BURST_AT} volume={0.7} />
@@ -86,7 +87,7 @@ export const Outro: React.FC = () => {
       <SafeBox top={1210}>
         <Pop at={CTA_AT} style={{ width: "100%", transform: `translateY(${ctaBounce}px)` }}>
           <Sfx name="pop" at={CTA_AT} />
-          <div style={{ background: `linear-gradient(90deg, ${accent.S}, ${accent.K})`, borderRadius: 999, padding: "24px 40px", textAlign: "center", fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.2, color: colors.white, boxShadow: `0 20px 50px ${accent.S}66`, border: "3px solid rgba(255,255,255,0.5)" }}>
+          <div style={{ background: `linear-gradient(90deg, ${accent.S}, ${accent.K})`, borderRadius: 999, padding: "24px 40px", textAlign: "center", fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.2, color: colors.onAccent, boxShadow: `0 20px 50px ${accent.S}55`, border: "3px solid rgba(255,255,255,0.6)" }}>
             {outro.cta}
           </div>
         </Pop>
@@ -94,7 +95,7 @@ export const Outro: React.FC = () => {
 
       <SafeBox top={1430}>
         <Pop at={CREDIT_AT}>
-          <span style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: size.minText, color: colors.secondary }}>{outro.credit}</span>
+          <span style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: size.minText, color: colors.textSoft }}>{outro.credit}</span>
         </Pop>
       </SafeBox>
     </SceneShell>

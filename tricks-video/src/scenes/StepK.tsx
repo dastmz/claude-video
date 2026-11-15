@@ -50,7 +50,7 @@ export const StepK: React.FC = () => {
           </svg>
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${spring({ frame: frame - X_AT, fps, config: { damping: 9, stiffness: 220 } })})` }}>
             <div style={{ width: 200, height: 200, borderRadius: 999, background: `${colors.pen}EE`, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 0 50px ${colors.pen}` }}>
-              <DrawIcon Icon={X} at={X_AT} color={colors.white} size={150} strokeWidth={3.4} />
+              <DrawIcon Icon={X} at={X_AT} color={colors.onAccent} size={150} strokeWidth={3.4} />
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const StepK: React.FC = () => {
           })}
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "flex-end", padding: 24, transform: `scale(${spring({ frame: frame - TICK_AT, fps, config: { damping: 9, stiffness: 220 } })})`, transformOrigin: "85% 85%" }}>
             <div style={{ width: 170, height: 170, borderRadius: 999, background: colors.good, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 0 50px ${colors.good}` }}>
-              <DrawIcon Icon={Check} at={TICK_AT} color={colors.white} size={120} strokeWidth={3.6} />
+              <DrawIcon Icon={Check} at={TICK_AT} color={colors.onAccent} size={120} strokeWidth={3.6} />
             </div>
           </div>
         </div>

@@ -10,15 +10,15 @@
 
 export const hook = {
   slam: "LAGI 2 MARKAH",
-  typed: "NAK DAPAT A...",
-  grade: "B+",
-  sub: "Near miss lagi? 😩",
+  typed: "NAK LULUS...",
+  score: "38", // red-pen exam score on the paper
+  sub: "Jangan risau, ada caranya! 💪",
 };
 
 export const title = {
   small: "TEACH YOU THE",
   word: "TRICKS",
-  subtitle: "6 Langkah Jawab [Kertas~1] Pendidikan Islam SPM",
+  subtitle: "6 Langkah [LULUS] Kertas~1 Pendidikan Islam SPM",
 };
 
 export const stepT = {
@@ -106,7 +106,7 @@ export const kbat = {
   badge: "BONUS",
   headline: "Soalan KBAT: 1~Isi~1~Cerita",
   steps: ["isi", "huraian", "kesan", "contoh", "kesimpulan"],
-  connectors: ["kerana", "supaya", "agar", "contohnya", "sehingga", "dengan cara"],
+  connectors: ["supaya", "untuk", "kerana", "agar", "seperti", "sehingga", "contohnya", "dengan~cara"],
 };
 
 export const stepK = {
@@ -129,8 +129,8 @@ export const outro = {
     { letter: "K", label: "Kemas" },
     { letter: "S", label: "Semak" },
   ],
-  quoteBefore: "Guna TRICKS, tukar near miss jadi",
-  quoteBurst: "A!",
-  cta: "📌 Save & tag kawan yang nak A PAI!",
-  credit: "Ustazah Rasyidah",
+  quoteBefore: "Guna TRICKS, kita~boleh",
+  quoteBurst: "LULUS!",
+  cta: "📌 Save & tag kawan yang nak LULUS PAI!",
+  credit: "Ustazah Rasyidah @ Penrissen",
 };

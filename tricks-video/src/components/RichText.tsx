@@ -136,7 +136,7 @@ export const TypeLines: React.FC<{
   caretColor?: string;
   darkText?: string;
   baseColor?: string;
-}> = ({ lines, start, cps = 1.6, linePause = 6, lineStyle, caretColor = colors.white, darkText, baseColor }) => {
+}> = ({ lines, start, cps = 1.6, linePause = 6, lineStyle, caretColor = colors.text, darkText, baseColor }) => {
   const frame = useCurrentFrame();
   const starts: number[] = [];
   {

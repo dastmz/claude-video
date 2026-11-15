@@ -1,6 +1,6 @@
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors, fonts, safe, size, video } from "../theme";
+import { colors, fonts, letterDrop, safe, size, video } from "../theme";
 import { slamScale } from "./anim";
 import { WordReveal } from "./RichText";
 import { Sfx } from "./Sfx";
@@ -55,7 +55,7 @@ export const StepHeader: React.FC<{
           fontSize: big,
           lineHeight: 1,
           color,
-          textShadow: `0 18px 0 rgba(0,0,0,0.28), 0 0 80px ${color}99`,
+          textShadow: `${letterDrop}, 0 0 70px ${color}55`,
         }}
       >
         <span style={{ transform: "translateY(0.04em)" }}>{letter}</span>
@@ -65,7 +65,7 @@ export const StepHeader: React.FC<{
           text={headline}
           start={HEADLINE_AT}
           align="center"
-          style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: headlineSize, lineHeight: 1.12, color: colors.white }}
+          style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: headlineSize, lineHeight: 1.12, color: colors.text }}
         />
       </div>
     </div>

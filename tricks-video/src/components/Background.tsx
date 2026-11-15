@@ -14,9 +14,9 @@ const hexA = (hex: string, a: number) => {
 export const Background: React.FC<{ tint: string; speed?: number }> = ({ tint, speed = 1 }) => {
   const g = useGlobalFrame() * speed;
   const blobs = [
-    { c: tint, x: 200 + Math.sin(g / 70) * 160, y: 420 + Math.cos(g / 90) * 140, r: 520, a: 0.32 },
-    { c: "#3B82F6", x: 880 + Math.cos(g / 80) * 140, y: 1250 + Math.sin(g / 60) * 180, r: 600, a: 0.22 },
-    { c: "#8B5CF6", x: 520 + Math.sin(g / 110) * 220, y: 1750 + Math.cos(g / 75) * 120, r: 480, a: 0.18 },
+    { c: tint, x: 200 + Math.sin(g / 70) * 160, y: 420 + Math.cos(g / 90) * 140, r: 540, a: 0.20 },
+    { c: "#3B82F6", x: 880 + Math.cos(g / 80) * 140, y: 1250 + Math.sin(g / 60) * 180, r: 600, a: 0.12 },
+    { c: "#8B5CF6", x: 520 + Math.sin(g / 110) * 220, y: 1750 + Math.cos(g / 75) * 120, r: 480, a: 0.10 },
   ];
   const gridShift = (g * 0.6) % 90;
   return (
@@ -39,7 +39,7 @@ export const Background: React.FC<{ tint: string; speed?: number }> = ({ tint, s
       <AbsoluteFill
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.045) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.045) 2px, transparent 2px)",
+            `linear-gradient(${colors.grid} 2px, transparent 2px), linear-gradient(90deg, ${colors.grid} 2px, transparent 2px)`,
           backgroundSize: "90px 90px",
           backgroundPosition: `${gridShift}px ${gridShift * 0.5}px`,
           maskImage: "radial-gradient(ellipse at 50% 45%, black 30%, transparent 85%)",

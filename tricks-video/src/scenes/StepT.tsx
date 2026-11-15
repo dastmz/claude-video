@@ -26,10 +26,10 @@ export const StepT: React.FC = () => {
         <Pop at={CARD_AT} style={{ width: "100%" }}>
           <Sfx name="pop" at={CARD_AT} />
           <Card accentColor={c}>
-            <WordReveal text={stepT.question} start={Q_AT} stagger={3} style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: 60, lineHeight: 1.35, color: colors.white }} />
+            <WordReveal text={stepT.question} start={Q_AT} stagger={3} style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: 60, lineHeight: 1.35, color: colors.text }} />
             <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22 }}>
               <Pop at={MARKS_AT}>
-                <span style={{ position: "relative", display: "inline-block", fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: mk > 0.5 ? colors.bg : colors.secondary, padding: "4px 14px", zIndex: 0 }}>
+                <span style={{ position: "relative", display: "inline-block", fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: mk > 0.5 ? colors.text : colors.textSoft, padding: "4px 14px", zIndex: 0 }}>
                   <span style={{ position: "absolute", inset: 0, background: colors.highlight, borderRadius: 12, transform: `scaleX(${mk})`, transformOrigin: "left", zIndex: -1 }} />
                   {stepT.marks}
                 </span>
@@ -54,7 +54,7 @@ export const StepT: React.FC = () => {
             }}
           >
             <DrawIcon Icon={Lightbulb} at={TIP_AT + 4} color={colors.highlight} size={72} />
-            <WordReveal text={stepT.tip} start={TIP_AT + 6} stagger={3} darkText={colors.bg} style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.2, color: colors.white }} />
+            <WordReveal text={stepT.tip} start={TIP_AT + 6} stagger={3} darkText={colors.text} baseColor={colors.onAccent} style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.2, color: colors.onAccent }} />
           </div>
         </Pop>
       </SafeBox>

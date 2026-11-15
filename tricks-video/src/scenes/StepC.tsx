@@ -41,9 +41,9 @@ const FormulaCard: React.FC<{ index: number; label: string; children: React.Reac
         height: CARD_BOTTOM - CARD_TOP,
         transform: `translateX(${x}px) rotate(${(1 - enter) * 6 - exit * 6}deg)`,
         borderRadius: radius,
-        background: "linear-gradient(180deg, #1C2E63 0%, #14214A 100%)",
-        border: `3px solid ${c}88`,
-        boxShadow: `${shadow}, 0 0 80px ${c}33`,
+        background: colors.surface,
+        border: `3px solid ${c}55`,
+        boxShadow: `${shadow}, 0 0 60px ${c}22`,
         padding: "34px 36px",
         boxSizing: "border-box",
         display: "flex",
@@ -54,15 +54,15 @@ const FormulaCard: React.FC<{ index: number; label: string; children: React.Reac
     >
       <Sfx name="whoosh" at={CARDS_AT + index * CARD_LEN} volume={0.35} />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", ...popStyle(frame, fps, CARDS_AT + index * CARD_LEN + 6) }}>
-        <span style={{ background: c, color: colors.white, fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, borderRadius: 999, padding: "8px 30px", lineHeight: 1.2 }}>{label}</span>
-        <span style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: colors.secondary }}>{index + 1}/5</span>
+        <span style={{ background: c, color: colors.onAccent, fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, borderRadius: 999, padding: "8px 30px", lineHeight: 1.2 }}>{label}</span>
+        <span style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: colors.textSoft }}>{index + 1}/5</span>
       </div>
       <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", paddingBottom: 10 }}>{children}</div>
     </div>
   );
 };
 
-const Formula: React.FC<{ at: number; text: string; fontSize: number; color?: string; style?: React.CSSProperties }> = ({ at, text, fontSize, color = colors.highlight, style }) => {
+const Formula: React.FC<{ at: number; text: string; fontSize: number; color?: string; style?: React.CSSProperties }> = ({ at, text, fontSize, color = c, style }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = spring({ frame: frame - at, fps, config: { damping: 10, stiffness: 220, mass: 0.8 } });
@@ -78,7 +78,7 @@ const Formula: React.FC<{ at: number; text: string; fontSize: number; color?: st
         letterSpacing: "0.02em",
         opacity: frame >= at ? 1 : 0,
         transform: `scale(${2.2 - 1.2 * s})`,
-        textShadow: `0 10px 0 rgba(0,0,0,0.3), 0 0 50px ${color}66`,
+        textShadow: `0 6px 0 rgba(15,27,61,0.12)`,
         ...style,
       }}
     >
@@ -94,7 +94,7 @@ const Item: React.FC<{ at: number; Icon: LucideIcon; text: string; iconColor?: s
       <DrawIcon Icon={Icon} at={at + 2} color={iconColor} size={Math.round(box * 0.64)} />
     </Pop>
     <Sfx name="pop" at={at} volume={0.35} />
-    <WordReveal text={text} start={at + 2} stagger={2} gap={0.24} style={{ fontFamily: fonts.body, fontWeight: 500, fontSize, lineHeight: 1.12, color: colors.white, flex: 1 }} />
+    <WordReveal text={text} start={at + 2} stagger={2} gap={0.24} style={{ fontFamily: fonts.body, fontWeight: 500, fontSize, lineHeight: 1.12, color: colors.text, flex: 1 }} />
   </div>
 );
 
@@ -169,7 +169,7 @@ const Punca: React.FC = () => {
           {/* trunk */}
           <path d="M390 300 L 390 230 M390 260 L 350 225 M390 250 L 425 222" fill="none" stroke="#A16207" strokeWidth={14} strokeLinecap="round" pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - trunk} />
           {/* ground */}
-          <path d="M60 300 L 720 300" stroke={`${colors.secondary}55`} strokeWidth={4} strokeDasharray="14 12" style={{ opacity: trunk }} />
+          <path d="M60 300 L 720 300" stroke={`${colors.textSoft}55`} strokeWidth={4} strokeDasharray="14 12" style={{ opacity: trunk }} />
           {roots.map((d, i) => {
             const p = penProg(frame, b + 36 + i * 8, 14);
             return <path key={i} d={d} fill="none" stroke={cols[i]} strokeWidth={10} strokeLinecap="round" pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - p} style={{ filter: `drop-shadow(0 0 10px ${cols[i]})` }} />;
@@ -185,7 +185,7 @@ const Punca: React.FC = () => {
                 <DrawIcon Icon={icons[i]} at={at + 2} color={cols[i]} size={50} />
               </Pop>
               <Sfx name="pop" at={at} volume={0.35} />
-              <WordReveal text={t} start={at + 3} stagger={3} align="center" style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: size.body, lineHeight: 1.12, color: colors.white }} />
+              <WordReveal text={t} start={at + 3} stagger={3} align="center" style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: size.body, lineHeight: 1.12, color: colors.text }} />
             </div>
           );
         })}
@@ -225,7 +225,7 @@ const Pengajaran: React.FC = () => {
       </div>
       <Pop at={b + 50} style={{ marginTop: 30, border: `3px dashed ${colors.highlight}AA`, borderRadius: 28, padding: "22px 26px", background: "rgba(250,204,21,0.06)" }}>
         <Sfx name="pop" at={b + 50} />
-        <WordReveal text={stepC.pengajaran.template} start={b + 54} stagger={3} align="center" style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.3, color: colors.white }} />
+        <WordReveal text={stepC.pengajaran.template} start={b + 54} stagger={3} align="center" style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, lineHeight: 1.3, color: colors.text }} />
       </Pop>
     </FormulaCard>
   );
@@ -239,10 +239,10 @@ const CompactHeader: React.FC = () => {
   const s = spring({ frame: frame - CARDS_AT + 4, fps, config: { damping: 16, stiffness: 150 } });
   return (
     <div style={{ position: "absolute", left: safe.left, width: safe.width, top: safe.top, height: 180, display: "flex", alignItems: "center", gap: 26, opacity: s, transform: `translateY(${(1 - s) * -60}px)` }}>
-      <div style={{ width: 150, height: 150, borderRadius: radius, background: c, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: fonts.headline, fontWeight: 900, fontSize: 120, color: colors.white, boxShadow: `0 0 50px ${c}88`, flexShrink: 0, lineHeight: 1 }}>
+      <div style={{ width: 150, height: 150, borderRadius: radius, background: c, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: fonts.headline, fontWeight: 900, fontSize: 120, color: colors.onAccent, boxShadow: `0 12px 30px ${c}66`, flexShrink: 0, lineHeight: 1 }}>
         <span style={{ transform: "translateY(0.05em)" }}>{stepC.letter}</span>
       </div>
-      <div style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: size.minText, lineHeight: 1.04, color: colors.white }}>{stepC.headline}</div>
+      <div style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: size.minText, lineHeight: 1.04, color: colors.text }}>{stepC.headline}</div>
     </div>
   );
 };
@@ -262,7 +262,7 @@ export const StepC: React.FC = () => {
             <Pop at={BANNER_AT} style={{ width: "100%", transform: `rotate(${-2 + bannerWiggle}deg)` }}>
               <Sfx name="slam" at={BANNER_AT} volume={0.5} />
               <div style={{ background: c, borderRadius: radius, padding: "30px 36px", boxShadow: `0 24px 60px ${c}66`, border: `4px solid ${colors.white}` }}>
-                <WordReveal text={stepC.banner} start={BANNER_AT + 4} stagger={3} align="center" darkText={colors.bg} style={{ fontFamily: fonts.headline, fontWeight: 900, fontSize: 66, lineHeight: 1.18, color: colors.white }} />
+                <WordReveal text={stepC.banner} start={BANNER_AT + 4} stagger={3} align="center" darkText={colors.text} baseColor={colors.onAccent} style={{ fontFamily: fonts.headline, fontWeight: 900, fontSize: 66, lineHeight: 1.18, color: colors.onAccent }} />
               </div>
             </Pop>
           </SafeBox>

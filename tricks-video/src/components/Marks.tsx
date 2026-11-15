@@ -14,7 +14,7 @@ export const Marked: React.FC<{
   darkText?: string;
   baseColor?: string;
   children: React.ReactNode;
-}> = ({ mark, p, seed, extendRight = "0em", darkText = colors.bg, baseColor = colors.white, children }) => {
+}> = ({ mark, p, seed, extendRight = "0em", darkText = colors.text, baseColor = colors.text, children }) => {
   if (mark === "none") return <>{children}</>;
   const textLen = typeof children === "string" ? approxEm(children) : 3;
   if (mark === "hl") {
