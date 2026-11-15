@@ -33,8 +33,8 @@ export const stepR = {
   letter: "R",
   headline: "Rujuk Peruntukan Markah",
   rows: [
-    { marks: "[2 markah]", result: "2 fakta" },
-    { marks: "[4 markah]", result: "fakta + huraian" },
+    { marks: "[2 markah]", result: "1 isi + 1 huraian" },
+    { marks: "[4 markah]", result: "2 isi + 2 huraian" },
   ],
 };
 
@@ -43,8 +43,8 @@ export const stepI = {
   headline: "Isi Kepala Ayat Jawapan",
   // each entry = one written line on the answer sheet
   lines: [
-    "|Maksud| ujub ialah ...",
-    "Dua |cara| meninggalkan sifat mazmumah ialah:",
+    "Maksud ujub ialah ...",
+    "Dua cara meninggalkan sifat mazmumah ialah:",
     "1. ...",
     "2. ...",
   ],

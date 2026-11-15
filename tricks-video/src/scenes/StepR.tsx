@@ -6,9 +6,10 @@ import { penProg, wobblyEllipse } from "../components/anim";
 import { SceneShell } from "../components/SceneShell";
 import { HEADER_BOTTOM, SLAM_AT, StepHeader } from "../components/StepHeader";
 import { Arrow, Card, Pop, SafeBox } from "../components/UI";
+import { WordReveal } from "../components/RichText";
 import { Sfx } from "../components/Sfx";
 
-const ROW_AT = [70, 118];
+const ROW_AT = [66, 116];
 
 const PenCircle: React.FC<{ at: number; seed: string; children: React.ReactNode }> = ({ at, seed, children }) => {
   const frame = useCurrentFrame();
@@ -28,21 +29,27 @@ export const StepR: React.FC = () => {
   return (
     <SceneShell tint={c} slams={[SLAM_AT + 2]}>
       <StepHeader letter={stepR.letter} color={c} headline={stepR.headline} />
-      <SafeBox top={HEADER_BOTTOM + 20} style={{ gap: 44 }}>
+      <SafeBox top={HEADER_BOTTOM + 10} style={{ gap: 34 }}>
         {stepR.rows.map((row, i) => {
           const at = ROW_AT[i];
           return (
             <Pop key={i} at={at} style={{ width: "100%" }}>
               <Sfx name="pop" at={at} />
-              <Sfx name="pop" at={at + 32} volume={0.4} />
-              <Card accentColor={c} style={{ display: "flex", alignItems: "center", gap: 18, padding: "44px 36px", minHeight: 230 }}>
-                <PenCircle at={at + 10} seed={`r${i}`}>
+              <Sfx name="pop" at={at + 30} volume={0.4} />
+              <Card accentColor={c} style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "26px 30px 30px" }}>
+                <PenCircle at={at + 8} seed={`r${i}`}>
                   <span style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: colors.text, whiteSpace: "nowrap" }}>{row.marks}</span>
                 </PenCircle>
-                <Arrow at={at + 22} color={c} width={100} />
-                <Pop at={at + 32} style={{ flex: 1 }}>
-                  <div style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: 64, lineHeight: 1.1, color: c }}>{row.result}</div>
-                </Pop>
+                <div style={{ height: 96, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Arrow at={at + 18} color={c} width={92} height={50} dir="down" />
+                </div>
+                <WordReveal
+                  text={row.result}
+                  start={at + 28}
+                  stagger={3}
+                  align="center"
+                  style={{ fontFamily: fonts.headline, fontWeight: 800, fontSize: 68, lineHeight: 1.1, color: c, whiteSpace: "nowrap" }}
+                />
               </Card>
             </Pop>
           );

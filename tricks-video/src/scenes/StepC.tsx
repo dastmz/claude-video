@@ -28,7 +28,7 @@ const FormulaCard: React.FC<{ index: number; label: string; children: React.Reac
   const { fps } = useVideoConfig();
   const local = frame - (CARDS_AT + index * CARD_LEN);
   const enter = spring({ frame: local, fps, config: { damping: 18, stiffness: 170 } });
-  const exit = index < 4 ? spring({ frame: local - CARD_LEN, fps, config: { damping: 18, stiffness: 170 } }) : 0;
+  const exit = index < 5 ? spring({ frame: local - CARD_LEN, fps, config: { damping: 18, stiffness: 170 } }) : 0;
   if (local < -2 || local > CARD_LEN + 16) return null;
   const x = (1 - enter) * 1100 - exit * 1100;
   return (
@@ -231,6 +231,62 @@ const Pengajaran: React.FC = () => {
   );
 };
 
+/* ---------- all five formulas at once ---------- */
+
+export const SUMMARY_AT = CARDS_AT + 5 * CARD_LEN;
+
+const Summary: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  if (frame < SUMMARY_AT - 2) return null;
+  const k = stepC.kesan;
+  const rows: { label: string; parts: { t: string; col: string }[]; sep?: string }[] = [
+    { label: stepC.hikmah.label, parts: [{ t: stepC.hikmah.formula, col: c }] },
+    { label: stepC.kesan.label, parts: [{ t: k.good.formula, col: "#16A34A" }, { t: k.bad.formula, col: colors.pen }] },
+    { label: stepC.punca.label, parts: [{ t: stepC.punca.formula, col: c }] },
+    { label: stepC.cara.label, parts: stepC.cara.formula.map((f) => ({ t: plain(f), col: c })), sep: " " },
+    { label: stepC.pengajaran.label, parts: [{ t: stepC.pengajaran.formula, col: c }] },
+  ];
+  return (
+    <div style={{ position: "absolute", left: safe.left, width: safe.width, top: CARD_TOP, height: CARD_BOTTOM - CARD_TOP, display: "flex", flexDirection: "column", justifyContent: "center", gap: 14 }}>
+      <Sfx name="whoosh" at={SUMMARY_AT} volume={0.35} />
+      {rows.map((r, i) => {
+        const at = SUMMARY_AT + 4 + i * 7;
+        const s = spring({ frame: frame - at, fps, config: { damping: 16, stiffness: 170 } });
+        return (
+          <div
+            key={i}
+            style={{
+              ...popStyle(frame, fps, at),
+              transform: `translateX(${(1 - s) * 260}px) scale(${0.85 + 0.15 * s})`,
+              background: colors.surface,
+              borderRadius: 28,
+              border: `3px solid ${c}44`,
+              borderLeft: `14px solid ${c}`,
+              boxShadow: shadow,
+              padding: "12px 24px 14px",
+            }}
+          >
+            <Sfx name="pop" at={at} volume={0.3} />
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <span style={{ width: 56, height: 56, borderRadius: 999, background: c, color: colors.onAccent, fontFamily: fonts.headline, fontWeight: 900, fontSize: 40, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{i + 1}</span>
+              <span style={{ fontFamily: fonts.body, fontWeight: 700, fontSize: size.body, color: colors.textSoft, lineHeight: 1.15 }}>{r.label}</span>
+            </div>
+            <div style={{ fontFamily: fonts.headline, fontWeight: 900, fontSize: 60, lineHeight: 1.08, marginTop: 4 }}>
+              {r.parts.map((p, j) => (
+                <React.Fragment key={j}>
+                  {j > 0 && <span style={{ color: colors.textSoft }}>{r.sep ?? " · "}</span>}
+                  <span style={{ color: p.col, whiteSpace: "nowrap" }}>{p.t}</span>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 /* ---------- compact header shown during the cards ---------- */
 
 const CompactHeader: React.FC = () => {
@@ -274,6 +330,7 @@ export const StepC: React.FC = () => {
       <Punca />
       <Cara />
       <Pengajaran />
+      <Summary />
     </SceneShell>
   );
 };

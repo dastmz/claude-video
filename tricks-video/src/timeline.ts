@@ -1,22 +1,22 @@
 import { accent, colors, motion } from "./theme";
 
-/** Scene lengths in frames (30fps). Start times = spec (0,4,8,15,22,29,50,56,62,69s). */
+/** Scene lengths in frames (30fps). Starts: 0,4,8,15,22,29 (C, 24s), 53 K, 59 S, 66 BONUS KBAT, 72 outro → 78s. */
 export const scenes = [
   { id: "hook", frames: 120, wipe: colors.highlight },
   { id: "title", frames: 120, wipe: accent.T },
   { id: "T", frames: 210, wipe: accent.R },
   { id: "R", frames: 210, wipe: accent.I },
   { id: "I", frames: 210, wipe: accent.C },
-  { id: "C", frames: 630, wipe: accent.C },
-  { id: "kbat", frames: 180, wipe: accent.K },
+  { id: "C", frames: 720, wipe: accent.K },
   { id: "K", frames: 180, wipe: accent.S },
-  { id: "S", frames: 210, wipe: colors.highlight },
+  { id: "S", frames: 210, wipe: accent.C },
+  { id: "kbat", frames: 180, wipe: colors.highlight },
   { id: "outro", frames: 180, wipe: null },
 ] as const;
 
 export type SceneId = (typeof scenes)[number]["id"];
 
-export const TOTAL_FRAMES = scenes.reduce((a, s) => a + s.frames, 0); // 2250 = 75s
+export const TOTAL_FRAMES = scenes.reduce((a, s) => a + s.frames, 0); // 2340 = 78s
 
 /** Absolute start frame of each scene (where its content is fully visible after the wipe begins). */
 export const sceneStart = (id: SceneId) => {
