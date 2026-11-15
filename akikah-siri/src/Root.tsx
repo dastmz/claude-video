@@ -14,7 +14,7 @@ export const RemotionRoot: React.FC = () => {
         fps={VIDEO.fps}
         width={VIDEO.width}
         height={VIDEO.height}
-        defaultProps={{ showSafeZone: false }}
+        defaultProps={{ showSafeZone: false, voiceFile: "audio/ep1.mp3" }}
       />
       {/* Episod 2 & 3: tambah <Composition id="Ep2-..."> di sini menggunakan src/shared/ */}
       <Still id="Helaian-Watak" component={CharacterSheet} width={VIDEO.width} height={VIDEO.height} />

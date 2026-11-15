@@ -1,9 +1,11 @@
 import React from "react";
 import { AbsoluteFill, Html5Audio, Sequence } from "remotion";
-import { firstExisting } from "../../shared/assets";
+import { optionalFile } from "../../shared/assets";
+import { SfxTrack } from "../../shared/SfxTrack";
+import { SFX } from "./sfx";
 import { SafeZoneGuide } from "../../shared/SafeZoneGuide";
 import { Subtitle } from "../../shared/Subtitle";
-import { COLORS, sec } from "../../shared/theme";
+import { COLORS } from "../../shared/theme";
 import { Watermark } from "../../shared/Watermark";
 import { Babak1 } from "./scenes/Babak1";
 import { Babak2 } from "./scenes/Babak2";
@@ -15,6 +17,8 @@ import { babakFrames, CUES } from "./script";
 export type Ep1Props = {
   /** Papar lapisan zon selamat TikTok (untuk semakan draf sahaja). */
   showSafeZone: boolean;
+  /** Fail suara dalam public/ (lalai "audio/ep1.mp3"). Diabaikan jika tiada. */
+  voiceFile: string;
 };
 
 const SCENES = [
@@ -25,9 +29,8 @@ const SCENES = [
   { key: "b5", name: "Babak 5 – Soalan KBAT", C: Babak5 },
 ] as const;
 
-export const Ep1SayangAnak: React.FC<Ep1Props> = ({ showSafeZone }) => {
-  const audio = firstExisting("audio/ep1", ["mp3"]);
-  const heartbeat = firstExisting("audio/sfx/heartbeat", ["mp3", "wav"]);
+export const Ep1SayangAnak: React.FC<Ep1Props> = ({ showSafeZone, voiceFile }) => {
+  const audio = optionalFile(voiceFile);
   return (
     <AbsoluteFill style={{ background: COLORS.navy }}>
       {SCENES.map(({ key, name, C }) => {
@@ -41,11 +44,7 @@ export const Ep1SayangAnak: React.FC<Ep1Props> = ({ showSafeZone }) => {
       <Subtitle cues={CUES} />
       <Watermark />
       {audio ? <Html5Audio src={audio} /> : null}
-      {heartbeat ? (
-        <Sequence from={sec(69.6)} durationInFrames={sec(5.4)} name="SFX degupan jantung">
-          <Html5Audio src={heartbeat} loop volume={0.9} />
-        </Sequence>
-      ) : null}
+      <SfxTrack cues={SFX} />
       {showSafeZone ? <SafeZoneGuide /> : null}
     </AbsoluteFill>
   );

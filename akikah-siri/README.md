@@ -31,8 +31,16 @@ Semua fail diletak dalam `public/`. Jika fail tiada, video guna ilustrasi / sari
 | Fail | Kesan |
 |---|---|
 | `public/clips/ep1_b1.mp4` … `ep1_b5.mp4` | Menggantikan latar **dan** watak ilustrasi babak 1–5. Teks, telefon, kalendar, ikon, sari kata & watermark kekal di atas. Klip dimainkan tanpa bunyi dan diulang jika lebih pendek. Gunakan 9:16. |
-| `public/audio/ep1.mp3` | Suara/muzik penuh 90 s, bermula pada 0 s. |
-| `public/audio/sfx/heartbeat.mp3` (atau `.wav`) | Bunyi degupan jantung semasa freeze frame (69.6–75 s). |
+| `public/audio/ep1.mp3` | Trek suara penuh 90 s, bermula pada 0 s. **Kini berisi suara sementara robotik (espeak-ng)** — gantikan dengan rakaman sebenar. |
+| `public/audio/sfx/*.wav` | Kesan bunyi (ding, buzz, pop, whoosh, pen, thud, impak, heartbeat, tik, chime). Garis masa dalam `src/episodes/ep1/sfx.ts`. Ganti mana-mana fail dengan nama sama (`.wav` atau `.mp3`). |
+
+Render tanpa suara (untuk alih suara di CapCut dsb.):
+`npx remotion render Ep1-SayangAnak out/ep1_tanpa_suara.mp4 --props='{"showSafeZone":false,"voiceFile":"audio/tiada.mp3"}'`
+
+Alat jana audio (perlu Python + numpy, espeak-ng, ffmpeg):
+- `python3 tools/jana_sfx.py` — jana semula SFX sintetik.
+- `python3 tools/jana_suara_espeak.py` — jana suara sementara daripada `CUES`, kemudian salin
+  `public/audio/sementara/ep1_espeak.mp3` ke `public/audio/ep1.mp3`.
 
 Selepas menambah fail, mulakan semula Studio (atau render semula) supaya fail dikesan.
 
