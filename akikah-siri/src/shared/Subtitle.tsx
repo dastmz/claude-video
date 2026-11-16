@@ -35,6 +35,18 @@ export const isTalking = (cues: Cue[], speaker: Speaker, frame: number) => {
   return frame / VIDEO.fps < c.end - 0.25;
 };
 
+/** Elak singkatan seperti "P-H-K-R" dipecah di hujung baris. */
+const noBreakAcronyms = (text: string) =>
+  text.split(/(\b[A-Z](?:-[A-Z])+\b)/g).map((part, i) =>
+    i % 2 === 1 ? (
+      <span key={i} style={{ whiteSpace: "nowrap" }}>
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+
 type Props = {
   cues: Cue[];
   showSpeaker?: boolean;
@@ -106,7 +118,7 @@ export const Subtitle: React.FC<Props> = ({ cues, showSpeaker = true, fontSize =
             textWrap: "balance",
           }}
         >
-          {cue.text}
+          {noBreakAcronyms(cue.text)}
         </div>
       </div>
     </AbsoluteFill>

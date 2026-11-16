@@ -22,7 +22,7 @@ VOICE = {  # varian espeak-ng, pic, kelajuan
 SEBUTAN = [  # ejaan sebutan sahaja (sari kata tidak berubah)
     ("KBAT", "kabat"), ("SPM", "es pi em"), ("Insya-Allah", "insya allah"),
     (" app ", " ep "), ("...", ", "), ("Episod 2", "episod dua"), ("Episod 3", "episod tiga"),
-    ("SAW", "sallallahu alaihi wasallam"), ("1/7", "satu per tujuh"),
+    ("SAW", "sallallahu alaihi wasallam"), ("P-H-K-R", "pi, hec, kei, ar"), ("1/7", "satu per tujuh"),
 ]
 
 tmp = tempfile.mkdtemp()
