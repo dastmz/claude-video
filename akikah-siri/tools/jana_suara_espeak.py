@@ -1,11 +1,12 @@
 """Jana trek suara SEMENTARA (robotik) dengan espeak-ng mengikut masa CUES dalam
 src/episodes/ep1/script.ts. Gantikan dengan rakaman sebenar bila ada.
-Jalankan: python3 tools/jana_suara_espeak.py   (perlu espeak-ng & ffmpeg)"""
-import json, os, re, subprocess, tempfile
+Jalankan: python3 tools/jana_suara_espeak.py [nombor episod]   (perlu espeak-ng & ffmpeg)"""
+import json, os, re, subprocess, sys, tempfile
 
+EP = sys.argv[1] if len(sys.argv) > 1 else "1"  # cth: python3 tools/jana_suara_espeak.py 2
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-OUT = os.path.join(ROOT, "public", "audio", "sementara", "ep1_espeak.mp3")
-src = open(os.path.join(ROOT, "src", "episodes", "ep1", "script.ts"), encoding="utf-8").read()
+OUT = os.path.join(ROOT, "public", "audio", "sementara", f"ep{EP}_espeak.mp3")
+src = open(os.path.join(ROOT, "src", "episodes", f"ep{EP}", "script.ts"), encoding="utf-8").read()
 cues = [
     dict(start=float(a), end=float(b), speaker=c, text=d)
     for a, b, c, d in re.findall(r'start:\s*([\d.]+),\s*end:\s*([\d.]+),\s*speaker:\s*"(\w+)",\s*text:\s*"([^"]+)"', src)
@@ -16,10 +17,12 @@ VOICE = {  # varian espeak-ng, pic, kelajuan
     "IBU": ("ms+f4", 62, 150),
     "FAIZ": ("ms+m7", 35, 165),
     "NARATOR": ("ms+m1", 48, 155),
+    "USTAZAH": ("ms+f2", 55, 150),
 }
 SEBUTAN = [  # ejaan sebutan sahaja (sari kata tidak berubah)
     ("KBAT", "kabat"), ("SPM", "es pi em"), ("Insya-Allah", "insya allah"),
-    (" app ", " ep "), ("...", ", "), ("Episod 2", "episod dua"),
+    (" app ", " ep "), ("...", ", "), ("Episod 2", "episod dua"), ("Episod 3", "episod tiga"),
+    ("SAW", "sallallahu alaihi wasallam"), ("1/7", "satu per tujuh"),
 ]
 
 tmp = tempfile.mkdtemp()

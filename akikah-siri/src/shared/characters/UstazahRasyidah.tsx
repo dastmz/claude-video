@@ -24,8 +24,8 @@ export const UstazahRasyidah: React.FC<CharacterProps & { hand?: "buka" | "tunju
         {/* blazer */}
         <path d="M 115 440 Q 250 400 385 440 Q 438 460 446 540 L 456 840 L 44 840 L 54 540 Q 62 460 115 440 Z" fill={BLAZER} />
         <path d="M 150 600 L 200 840 M 350 600 L 300 840" stroke={shade(BLAZER, -25)} strokeWidth={6} />
-        <Arm x={105} y={480} angle={armKanan} sleeve={BLAZER} skin={SKIN} hand={hand} />
-        <Arm x={395} y={480} angle={-armKiri} sleeve={BLAZER} skin={SKIN} hand={hand} />
+        {armKanan <= 60 ? <Arm x={105} y={480} angle={armKanan} sleeve={BLAZER} skin={SKIN} hand={hand} /> : null}
+        {armKiri <= 60 ? <Arm x={395} y={480} angle={-armKiri} sleeve={BLAZER} skin={SKIN} hand={hand} /> : null}
         <g transform={`translate(250 245) rotate(${tilt})`}>
           <ellipse cx={0} cy={0} rx={98} ry={114} fill={shade(TUDUNG, -24)} />
           <path d="M 0 -150 C -150 -150 -140 0 -135 70 C -130 140 -150 200 -150 250 L 150 250 C 150 200 130 140 135 70 C 140 0 150 -150 0 -150 Z" fill={TUDUNG} />
@@ -37,6 +37,9 @@ export const UstazahRasyidah: React.FC<CharacterProps & { hand?: "buka" | "tunju
           <path d="M -70 160 Q 0 210 70 160" stroke={shade(TUDUNG, -22)} strokeWidth={4} fill="none" />
           <path d="M -110 260 Q 0 310 110 260" stroke={shade(TUDUNG, -22)} strokeWidth={4} fill="none" />
         </g>
+        {/* lengan diangkat (menunjuk) dilukis di hadapan tudung */}
+        {armKanan > 60 ? <Arm x={105} y={480} angle={armKanan} sleeve={BLAZER} skin={SKIN} hand={hand} /> : null}
+        {armKiri > 60 ? <Arm x={395} y={480} angle={-armKiri} sleeve={BLAZER} skin={SKIN} hand={hand} /> : null}
       </g>
     </svg>
   );
